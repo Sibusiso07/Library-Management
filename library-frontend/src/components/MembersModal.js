@@ -14,8 +14,8 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: '#1a202c',
-    color: 'white',
+    backgroundColor: '#E0F7FA', // Cyan background color
+    color: '#1a202c',
     borderRadius: '10px',
     padding: '20px',
     width: '80%', // Adjust width to your preference
@@ -32,75 +32,86 @@ const MembersModal = ({ isOpen, closeRequest }) => {
   const [address, setAddress] = useState('');
   const [membershipDate, setMembershipDate] = useState('');
 
-  // Handle add author button.
+  // Handle add member button.
   const handleAddMember = async (e) => {
     e.preventDefault();
     const newMember = { firstName, lastName, email, phone, address, membershipDate };
-    const response = await axios.post('/api/members', newMember);
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setPhone('');
-    setAddress('');
-    setMembershipDate('');
+    await axios.post('/api/members', newMember);
+    closeRequest();
   };
 
   return (
-    <Modal isOpen={isOpen} closeRequest={closeRequest} style={customStyles} contentLabel='Add Member Details'>
-      <div>
-        <button onClick={closeRequest}>Close</button>
-        <h2>Members</h2>
-      <form onSubmit={handleAddMember}>
-        <div>
-          <label>First Name:</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Last Name:</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Phone:</label>
-          <input
-            type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Address:</label>
-          <input
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Membership Date:</label>
-          <input
-            type="date"
-            value={membershipDate}
-            onChange={(e) => setMembershipDate(e.target.value)}
-          />
-        </div>
-        <button type="submit">Add Member</button>
-      </form>
+    <Modal isOpen={isOpen} closeRequest={closeRequest} style={customStyles} contentLabel="Add Member Details">
+      <div className="flex flex-col space-y-4">
+        <button
+          onClick={closeRequest}
+          className="self-end bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+        >
+          Close
+        </button>
+        <h1 className="text-2xl font-bold text-cyan-600 text-center">Add New Member</h1>
+        <form onSubmit={handleAddMember} className="space-y-4">
+          <div className="flex flex-col">
+            <label className="text-cyan-600">First Name:</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-cyan-600">Last Name:</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-cyan-600">Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-cyan-600">Phone Number:</label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-cyan-600">Address:</label>
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-cyan-600">Membership Date:</label>
+            <input
+              type="date"
+              value={membershipDate}
+              onChange={(e) => setMembershipDate(e.target.value)}
+              className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-cyan-500 text-white px-4 py-2 rounded-md hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          >
+            Add Book
+          </button>
+        </form>
       </div>
     </Modal>
   );
