@@ -50,47 +50,51 @@ const Books = () => {
   }
 
   return (
-    <div>
-      <div>
-        <h1>Books</h1>
+    <div className="bg-emerald-100 p-6 rounded-md shadow-md">
+      <div className="text-center mb-4">
+        <h1 className="text-3xl font-bold text-emerald-600">Books</h1>
       </div>
-      <div>
-        <table>
+      <div className="overflow-x-auto">
+        <table className="min-w-full">
           <thead>
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Genre</th>
-              <th>Published Year</th>
-              <th>ISBN</th>
-              <th>Copies</th>
+            <tr className="bg-emerald-200">
+              <th className="px-6 py-3 text-left text-emerald-600">Title</th>
+              <th className="px-6 py-3 text-left text-emerald-600">Author</th>
+              <th className="px-6 py-3 text-left text-emerald-600">Genre</th>
+              <th className="px-6 py-3 text-left text-emerald-600">Published Year</th>
+              <th className="px-6 py-3 text-left text-emerald-600">ISBN</th>
+              <th className="px-6 py-3 text-left text-emerald-600">Copies</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td>Loading.....</td>
+                <td colSpan="6" className="px-6 py-4 text-center">Loading.....</td>
               </tr>
             ) : (
               books.map((book) => (
                 <tr key={book.book_id}>
-                  <td>{book.title}</td>
-                  <td>{book.author_id}</td>
-                  <td>{book.genre}</td>
-                  <td>{book.published_year}</td>
-                  <td>{book.isbn}</td>
-                  <td>{book.copies}</td>
+                  <td className="px-6 py-4">{book.title}</td>
+                  <td className="px-6 py-4">{book.author_id}</td>
+                  <td className="px-6 py-4">{book.genre}</td>
+                  <td className="px-6 py-4">{book.published_year}</td>
+                  <td className="px-6 py-4">{book.isbn}</td>
+                  <td className="px-6 py-4">{book.copies}</td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
       </div>
-      <div>
-        <button type='button' onClick={handleBack}>Back</button>
-        <button type='button' onClick={handleNewBook}>New Book</button>
+      <div className="mt-4 flex justify-between">
+        <button type='button' onClick={handleBack} className="bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+          Back
+        </button>
+        <button type='button' onClick={handleNewBook} className="bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+          New Book
+        </button>
       </div>
-      <BooksModal isOpen={isOpen} closeRequest={closeModal} appElement={document.getElementById('root')}/>
+      <BooksModal isOpen={isOpen} closeRequest={closeModal} appElement={document.getElementById('root')} />
     </div>
   );
 };

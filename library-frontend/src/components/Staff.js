@@ -50,45 +50,49 @@ const Staff = () => {
   }
 
   return (
-    <div>
-      <div>
-        <h1>Staff</h1>
+    <div className="bg-green-100 p-6 rounded-md shadow-md">
+      <div className="text-center mb-4">
+        <h1 className="text-3xl font-bold text-green-600">Staff</h1>
       </div>
-      <div>
-        <table>
+      <div className="overflow-x-auto">
+        <table className="min-w-full">
           <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Position</th>
+            <tr className="bg-green-200">
+              <th className="px-6 py-3 text-left text-green-600">First Name</th>
+              <th className="px-6 py-3 text-left text-green-600">Last Name</th>
+              <th className="px-6 py-3 text-left text-green-600">Email</th>
+              <th className="px-6 py-3 text-left text-green-600">Phone</th>
+              <th className="px-6 py-3 text-left text-green-600">Position</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td>Loading.....</td>
+                <td colSpan="5" className="px-6 py-4 text-center">Loading.....</td>
               </tr>
             ) : (
               staff.map((staffmember) => (
                 <tr key={staffmember.staff_id}>
-                  <td>{staffmember.first_name}</td>
-                  <td>{staffmember.last_name}</td>
-                  <td>{staffmember.email}</td>
-                  <td>{staffmember.phone}</td>
-                  <td>{staffmember.role}</td>
+                  <td className="px-6 py-4">{staffmember.first_name}</td>
+                  <td className="px-6 py-4">{staffmember.last_name}</td>
+                  <td className="px-6 py-4">{staffmember.email}</td>
+                  <td className="px-6 py-4">{staffmember.phone}</td>
+                  <td className="px-6 py-4">{staffmember.role}</td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
       </div>
-      <div>
-        <button type='button' onClick={handleBack}>Back</button>
-        <button type='button' onClick={handleNewMember}>New Staff</button>
+      <div className="mt-4 flex justify-between">
+        <button type='button' onClick={handleBack} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">
+          Back
+        </button>
+        <button type='button' onClick={handleNewMember} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">
+          New Member
+        </button>
       </div>
-      <StaffModal isOpen={isOpen} closeRequest={closeModal} appElement={document.getElementById('root')}/>
+      <StaffModal isOpen={isOpen} closeRequest={closeModal} appElement={document.getElementById('root')} />
     </div>
   );
 };

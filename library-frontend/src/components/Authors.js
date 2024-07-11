@@ -50,41 +50,45 @@ const Authors = () => {
   }
 
   return (
-    <div>
-      <div>
-        <h1>Authors</h1>
+    <div className="bg-teal-100 p-6 rounded-md shadow-md">
+      <div className="text-center mb-4">
+        <h1 className="text-3xl font-bold text-teal-600">Authors</h1>
       </div>
-      <div>
-        <table>
+      <div className="overflow-x-auto">
+        <table className="min-w-full">
           <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Bio</th>
+            <tr className="bg-teal-200">
+              <th className="px-6 py-3 text-left text-teal-600">First Name</th>
+              <th className="px-6 py-3 text-left text-teal-600">Last Name</th>
+              <th className="px-6 py-3 text-left text-teal-600">Bio</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td>Loading.....</td>
+                <td colSpan="3" className="px-6 py-4 text-center">Loading.....</td>
               </tr>
             ) : (
               authors.map((author) => (
                 <tr key={author.author_id}>
-                  <td>{author.first_name}</td>
-                  <td>{author.last_name}</td>
-                  <td>{author.bio}</td>
+                  <td className="px-6 py-4">{author.first_name}</td>
+                  <td className="px-6 py-4">{author.last_name}</td>
+                  <td className="px-6 py-4">{author.bio}</td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
       </div>
-      <div>
-        <button type='button' onClick={handleBack}>Back</button>
-        <button type='button' onClick={handleNewAuthor}>New Author</button>
+      <div className="mt-4 flex justify-between">
+        <button type='button' onClick={handleBack} className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400">
+          Back
+        </button>
+        <button type='button' onClick={handleNewAuthor} className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400">
+          New Author
+        </button>
       </div>
-      <AuthorModal isOpen={isOpen} closeRequest={closeModal} appElement={document.getElementById('root')}/>
+      <AuthorModal isOpen={isOpen} closeRequest={closeModal} appElement={document.getElementById('root')} />
     </div>
   );
 };
