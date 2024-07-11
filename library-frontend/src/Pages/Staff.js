@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 // Components.
-import StaffModal from './StaffModal';
+import StaffModal from '../components/Modals/StaffModal';
 
 const Staff = () => {
   // Hook Navigate.

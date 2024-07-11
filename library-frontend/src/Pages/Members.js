@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 // Components.
-import MembersModal from './MembersModal';
+import MembersModal from '../components/Modals/MembersModal';
 
 const Members = () => {
   // Hook Navigate.

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 // Components.
-import BooksModal from './BooksModal';
+import BooksModal from '../components/Modals/BooksModal';
 
 const Books = () => {
   // Hook Navigate.
