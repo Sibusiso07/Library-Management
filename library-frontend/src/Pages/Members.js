@@ -24,8 +24,8 @@ const Members = () => {
     try {
       // Set loading state.
       setLoading(true);
-
-      const response = await axios.get('/api/members');
+      // Fetching the authors.
+      const response = await axios.get("http://localhost:3001/members");
       setMembers(response.data);
     } catch (err) {
       console.error('Error fetching members: ', err);

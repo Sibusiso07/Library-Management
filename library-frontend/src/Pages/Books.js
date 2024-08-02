@@ -24,8 +24,8 @@ const Books = () => {
     try {
       // Set loading state.
       setLoading(true);
-
-      const response = await axios.get('/api/books');
+      // Fetching the authors.
+      const response = await axios.get("http://localhost:3001/books");
       setBooks(response.data);
     } catch (err) {
       console.error('Error fetching books: ', err);

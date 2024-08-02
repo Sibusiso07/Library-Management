@@ -30,18 +30,17 @@ const MembersModal = ({ isOpen, closeRequest }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
-  const [membershipDate, setMembershipDate] = useState('');
 
   // Handle add member button.
   const handleAddMember = async (e) => {
     e.preventDefault();
-    const newMember = { firstName, lastName, email, phone, address, membershipDate };
+    const newMember = { firstName, lastName, email, phone, address };
     await axios.post('/api/members', newMember);
     closeRequest();
   };
 
   return (
-    <Modal isOpen={isOpen} closeRequest={closeRequest} style={customStyles} contentLabel="Add Member Details">
+    <Modal isOpen={isOpen} onRequestClose={closeRequest} style={customStyles} contentLabel="Add Member Details">
       <div className="flex flex-col space-y-4">
         <button
           onClick={closeRequest}
@@ -58,6 +57,7 @@ const MembersModal = ({ isOpen, closeRequest }) => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
             />
           </div>
           <div className="flex flex-col">
@@ -67,6 +67,7 @@ const MembersModal = ({ isOpen, closeRequest }) => {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
             />
           </div>
           <div className="flex flex-col">
@@ -76,6 +77,7 @@ const MembersModal = ({ isOpen, closeRequest }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
             />
           </div>
           <div className="flex flex-col">
@@ -85,6 +87,7 @@ const MembersModal = ({ isOpen, closeRequest }) => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
             />
           </div>
           <div className="flex flex-col">
@@ -94,22 +97,14 @@ const MembersModal = ({ isOpen, closeRequest }) => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-cyan-600">Membership Date:</label>
-            <input
-              type="date"
-              value={membershipDate}
-              onChange={(e) => setMembershipDate(e.target.value)}
-              className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
             />
           </div>
           <button
             type="submit"
             className="bg-cyan-500 text-white px-4 py-2 rounded-md hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-400"
           >
-            Add Book
+            Add Member
           </button>
         </form>
       </div>

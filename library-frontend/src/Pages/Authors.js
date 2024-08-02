@@ -24,8 +24,8 @@ const Authors = () => {
     try {
       // Set loading state.
       setLoading(true);
-
-      const response = await axios.get('/api/authors');
+      // Fetching the authors.
+      const response = await axios.get("http://localhost:3001/authors");
       setAuthors(response.data);
     } catch (err) {
       console.error('Error fetching authors: ', err);
