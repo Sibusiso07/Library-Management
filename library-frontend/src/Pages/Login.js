@@ -7,15 +7,23 @@ const Login = () => {
   const navigate = useNavigate();
 
   // States.
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('sibu@email.com');
+  const [password, setPassword] = useState('admin123');
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', { email, password });
-      // Handle login success
-      navigate('/Dashboard');
+      const response = await axios.post("http://localhost:3001/login", {
+        username: email,
+        password: password
+       });
+       const results = response.data;
+      if (results.message === 'Login Successful') {
+        // Handle login success
+        navigate('/Dashboard');
+      } else {
+        console.log("Unable to login");
+      }
     } catch (error) {
       // Handle login failure
       console.error('Login failed', error);

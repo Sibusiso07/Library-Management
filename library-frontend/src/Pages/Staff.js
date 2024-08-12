@@ -42,6 +42,8 @@ const Staff = () => {
   // Closing the modal.
   const closeModal = () => {
     setIsOpen(false);
+    // Refresh the page to reflect changes.
+    fetchStaff();
   }
 
   const handleBack = () => {

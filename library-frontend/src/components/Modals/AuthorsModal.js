@@ -32,7 +32,7 @@ const AuthorModal = ({ isOpen, closeRequest }) => {
   const handleAddAuthor = async (e) => {
     e.preventDefault();
     const newAuthor = { firstname, lastname, bio };
-    await axios.post('/api/authors', newAuthor);
+    await axios.post("http://localhost:3001/addAuthor", { author: newAuthor });
     closeRequest();
   };
 

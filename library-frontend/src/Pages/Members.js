@@ -42,6 +42,8 @@ const Members = () => {
   // Closing the modal.
   const closeModal = () => {
     setIsOpen(false);
+    // Refresh the page to reflect changes.
+    fetchMembers();
   }
 
   const handleBack = () => {

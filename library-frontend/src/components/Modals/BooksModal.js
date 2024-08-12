@@ -37,7 +37,7 @@ const BooksModal = ({ isOpen, closeRequest }) => {
   const handleAddBook = async (e) => {
     e.preventDefault();
     const newBook = { title, authorId, publisherId, ISBN, publicationYear, categoryId, copiesAvailable };
-    await axios.post('/api/books', newBook);
+    await axios.post("http://localhost:3001/addBook", { book: newBook });
     closeRequest();
   };
 

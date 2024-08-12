@@ -29,13 +29,13 @@ const MembersModal = ({ isOpen, closeRequest }) => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
+  // const [address, setAddress] = useState('');
 
   // Handle add member button.
   const handleAddMember = async (e) => {
     e.preventDefault();
-    const newMember = { firstName, lastName, email, phone, address };
-    await axios.post('/api/members', newMember);
+    const newMember = { firstName, lastName, email, phone};
+    await axios.post("http://localhost:3001/addMember", { member: newMember });
     closeRequest();
   };
 
@@ -90,7 +90,7 @@ const MembersModal = ({ isOpen, closeRequest }) => {
               required
             />
           </div>
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <label className="text-cyan-600">Address:</label>
             <input
               type="text"
@@ -99,7 +99,7 @@ const MembersModal = ({ isOpen, closeRequest }) => {
               className="border border-cyan-300 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
               required
             />
-          </div>
+          </div> */}
           <button
             type="submit"
             className="bg-cyan-500 text-white px-4 py-2 rounded-md hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-400"

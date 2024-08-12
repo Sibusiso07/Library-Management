@@ -20,15 +20,14 @@ const db = new pg.Client({
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT
 });
-db.connect()
+db.connect();
 
 // Login route.
-app.post("/", async (req, res) => {
+app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
     const result = await db.query("SELECT * FROM staff WHERE email = $1", [username]);
     const user = result.rows[0];
-    
     if (user) {
       if (user.password === password) {
         return res.status(200).json({ message: 'Login Successful' });
@@ -46,7 +45,7 @@ app.post("/", async (req, res) => {
   }
 });
 
-// Route to get all authors
+// Route to get all authors.
 app.get("/authors", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM authors");
@@ -57,7 +56,7 @@ app.get("/authors", async (req, res) => {
   }
 });
 
-// Route to get all books
+// Route to get all books.
 app.get("/books", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM books");
@@ -79,7 +78,7 @@ app.get("/members", async (req, res) => {
   }
 });
 
-// Route to get all staff memebers.
+// Route to get all staff members.
 app.get("/staff", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM staff");
@@ -90,7 +89,66 @@ app.get("/staff", async (req, res) => {
   }
 });
 
+// Route to add a staff member.
+app.post("/addStaff", async (req, res) => {
+  try {
+    const { firstName, lastName, email, phone, position, password } = req.body.staff;
+    await db.query(
+      "INSERT INTO staff (first_name, last_name, email, phone, role, password) VALUES ($1, $2, $3, $4, $5, $6)",
+      [firstName, lastName, email, phone, position, password]
+    );
+    res.status(201).json({ message: 'Staff member added successfully' });
+  } catch (err) {
+    console.log("Error adding staff member: ", err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// Route to add a member.
+app.post("/addMember", async (req, res) => {
+  try {
+    const { firstName, lastName, email, phone } = req.body.member;
+    await db.query(
+      "INSERT INTO members (first_name, last_name, email, phone) VALUES ($1, $2, $3, $4)",
+      [firstName, lastName, email, phone]
+    );
+    res.status(201).json({ message: 'Member added successfully' });
+  } catch (err) {
+    console.log("Error adding member: ", err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// Route to add a book.
+app.post("/addBook", async (req, res) => {
+  try {
+    const { title, authorId, publisherId, ISBN, publicationYear, categoryId, copiesAvailable } = req.body.book;
+    await db.query(
+      "INSERT INTO books (title, author_id, publisher_id, ISBN, publication_year, category_id, copies_available) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      [title, authorId, publisherId, ISBN, publicationYear, categoryId, copiesAvailable]
+    );
+    res.status(201).json({ message: 'Book added successfully' });
+  } catch (err) {
+    console.log("Error adding book: ", err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// Route to add an author.
+app.post("/addAuthor", async (req, res) => {
+  try {
+    const { firstname, lastname, bio } = req.body.author;
+    await db.query(
+      "INSERT INTO authors (first_name, last_name, bio) VALUES ($1, $2, $3)",
+      [firstname, lastname, bio]
+    );
+    res.status(201).json({ message: 'Author added successfully' });
+  } catch (err) {
+    console.log("Error adding author: ", err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 app.listen(port, () => {
-    console.log(`server running on port ${port}`)
-})
+  console.log(`server running on port ${port}`);
+});

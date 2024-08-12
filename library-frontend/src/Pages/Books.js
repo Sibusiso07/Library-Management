@@ -42,6 +42,8 @@ const Books = () => {
   // Closing the modal.
   const closeModal = () => {
     setIsOpen(false);
+    // Refresh the page to reflect changes.
+    fetchBooks();
   }
 
   const handleBack = () => {

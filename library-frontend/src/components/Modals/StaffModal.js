@@ -36,7 +36,7 @@ const StaffModal = ({ isOpen, closeRequest }) => {
   const handleAddStaff = async (e) => {
     e.preventDefault();
     const newStaff = { firstName, lastName, email, phone, position, password };
-    await axios.post('/api/staff', newStaff);
+    await axios.post("http://localhost:3001/addStaff", { staff: newStaff });
     closeRequest();
   };
 
